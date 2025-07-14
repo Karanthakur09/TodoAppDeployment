@@ -3,10 +3,13 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import todoRoutes from './routes/todoRoutes.js'
+import userRoutes from './routes/userRoutes.js'
+import connectDb from './config/db.js';
 
 //env config before server setup
 dotenv.config();
-
+//DB connection
+connectDb();
 const app=express();
 //ports
 const PORT=process.env.PORT || 8000;
@@ -17,6 +20,7 @@ app.use(cors());
 app.use(morgan('dev'));
 //routes
 
+app.use('/api/v1/user',userRoutes);
 app.use('/api/v1/todo',todoRoutes);
 
 //listen
