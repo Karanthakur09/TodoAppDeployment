@@ -10,20 +10,27 @@ import connectDb from './config/db.js';
 dotenv.config();
 //DB connection
 connectDb();
-const app=express();
+const app = express();
 //ports
-const PORT=process.env.PORT || 8000;
+const PORT = process.env.PORT || 8000;
+
+// Put your frontend's development URL here
+const allowedOrigins = ['http://localhost:5173'];
+
+const corsOptions = {
+    origin: allowedOrigins
+}
 
 //middlewares
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use(cors());
 app.use(morgan('dev'));
 //routes
 
-app.use('/api/v1/user',userRoutes);
-app.use('/api/v1/todo',todoRoutes);
+app.use('/api/v1/user', userRoutes);
+app.use('/api/v1/todo', todoRoutes);
 
 //listen
-app.listen(PORT,()=>{
+app.listen(PORT, () => {
     console.log(`Node server is running on PORT ${process.env.PORT} in mode ${process.env.DEV_MODE}`)
 })
