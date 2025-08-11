@@ -46,12 +46,13 @@ export const registerController = async (req, res) => {
 //LOGIN
 export const loginController = async (req, res) => {
   try {
+    console.log("reached controller")
     const { email, password } = req.body;
     //find user
     const user = await userModel.findOne({ email });
     //validation
     if (!user) {
-      return res.status(404).send({
+      return res.status(500).send({
         success: false,
         message: "Invalid Email Or Password",
       });

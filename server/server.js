@@ -18,9 +18,8 @@ const PORT = process.env.PORT || 8000;
 const allowedOrigins = ['http://localhost:5173'];
 
 const corsOptions = {
-    origin: allowedOrigins
-}
-
+  origin: allowedOrigins
+};
 //middlewares
 app.use(cors(corsOptions));
 app.use(express.json());
