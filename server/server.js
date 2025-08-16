@@ -18,11 +18,12 @@ const PORT = process.env.PORT || 8000;
 const allowedOrigins = ['http://localhost:5173'];
 
 const corsOptions = {
-  origin: allowedOrigins
+  origin: allowedOrigins,
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
 //middlewares
-app.use(cors(corsOptions));
 app.use(express.json());
+app.use(cors(corsOptions));
 app.use(morgan('dev'));
 //routes
 
